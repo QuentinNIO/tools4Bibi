@@ -1,8 +1,8 @@
 #cd#!/usr/bin/zsh
 export PATH='/usr/bin:/bin:/usr/sbin:/usr/local/bin:/sbin'
 # For our compilation scripts
-mkdir -p $HOME/Git
-export GIT_PATH=$HOME/Git
+mkdir -p $HOME/work
+export GIT_PATH=$HOME/work
 
 # Correct some locales problems
 export LC_ALL=en_US.UTF-8
@@ -33,7 +33,7 @@ alias addAndroidNDK='export ANDROID_NDK=$HOME/Library/Android/sdk/ndk-bundle'
 alias ourIP='curl ipecho.net/plain'
 
 myIP(){
-    ifconfig | grep 'inet' | grep '192' | cut -d ' ' -f2
+    ifconfig | grep -A4 'en0' | grep 'inet ' | cut -d ' ' -f2
 }
 
 initAndroid(){
@@ -57,8 +57,6 @@ cat << EOF
 -------------- Help --------------
 
 SSH :
-    sshUbuntu - sshDeadPool - sshOSX002 
-    sshDebian - sshTest00X  - sshParis
     
 IDE :
     Brackets  -  Brackets2  - Brackets3
@@ -493,6 +491,21 @@ function gpgcat {
 	gpg  -o $file -d $1 && cat $file && rm -f $file
     fi
 }
+
+#######IFS#######
+IFS_TRUNK="${GIT_PATH}/repo/ifsrepo"
+ifs()
+{
+	if [ -f ${IFS_TRUNK}/Script/ifs.env ]; then
+		cd ${IFS_TRUNK}
+		  source Script/ifs.env
+		cd -
+	else
+		echo "${IFS_TRUNK}/Script/ifs.env not found : cannot load ifs environment"
+	fi
+}
+export PATH="$PATH:Script:Helper"
+###################
 
 alias e="emacs -nw"
 alias ne="emacs -nw"
