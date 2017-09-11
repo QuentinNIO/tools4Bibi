@@ -27,6 +27,7 @@ alias gita='git add'
 alias gitt='git lfs track'
 alias gitr='cd $(git rev-parse --show-cdup)'
 alias tailA='tail -n+1'
+alias bashconf='mv $HOME/.bashrc $HOME/old_bashrc.sh && cp bashrc.sh $HOME/.bashrc'
 alias zshconf='mv $HOME/.zshrc $HOME/old_zshrc.sh && cp zshrc.sh $HOME/.zshrc'
 alias addAndroidHOME='export ANDROID_HOME=$HOME/Library/Android/sdk'
 alias addAndroidNDK='export ANDROID_NDK=$HOME/Library/Android/sdk/ndk-bundle'
@@ -48,9 +49,7 @@ initRspec(){
     if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 }
 
-openA (){
-    open -a /Applications/Brackets.app $1
-}
+
 
 help() {
 cat << EOF
